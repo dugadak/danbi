@@ -44,3 +44,17 @@ class UserViewSet(viewsets.ModelViewSet):
         refresh_token = str(refresh)
         
         return Response({'token': access_token, 'refresh_token': refresh_token})
+
+    @action(detail=False, methods=['post'])
+    def refresh_access_token(self, request):
+        refresh_token = request.data.get('refresh_token')
+        
+        try:
+            refresh = RefreshToken(refresh_token)
+            access_token = str(refresh.access_token)
+        except:
+            return Response({'error' : '유효하지 않은 refresh_token입니다.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        response = Response({'token': access_token})
+        
+        return response
