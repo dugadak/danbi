@@ -25,10 +25,9 @@ class UserAccountManager(BaseUserManager):
     
     
 class User(AbstractBaseUser):
-    id = models.CharField(max_length=10, unique=True, validators=[MinLengthValidator(2)])
     username = models.CharField(max_length=6, unique=True, validators=[MinLengthValidator(2)])
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='members')
     
-    USERNAME_FIELD = 'id'
+    USERNAME_FIELD = 'username'
     
     objects = UserAccountManager()
