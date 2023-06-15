@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import viewsets, status
-from .serializers import UserSerializer
+from User.serializer import UserSerializer
 from django.shortcuts import get_object_or_404
 
 class UserViewSet(viewsets.ModelViewSet):
