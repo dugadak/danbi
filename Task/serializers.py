@@ -12,7 +12,7 @@ class SubTaskSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    SubTask = SubTaskSerializer()
+    SubTasks = SubTaskSerializer(many=True, read_only=True)
     completed_date = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
     created_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
     modified_at = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
