@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.validators import MinLengthValidator
 
 class Team(models.Model):
-    name = models.CharField(max_length=4)
+    name = models.CharField(max_length=4, primary_key=True)
 
 
 class UserAccountManager(BaseUserManager):
