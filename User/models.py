@@ -7,15 +7,15 @@ class Team(models.Model):
 
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, id, username, team, password):
-        user = self.model(id=id, username=username, team=team, password=password)
+    def create_user(self, username, team_id, password):
+        user = self.model(username=username, team_id=team_id, password=password)
         user.set_password(password)
         user.is_admin = False
         user.save(using = self._db)
         return user
     
-    def create_superuser(self, id, username, team, password):
-        user = self.create_user(id=id, username=username, team=team, password=password)
+    def create_superuser(self, username, team_id, password):
+        user = self.create_user(username=username, team_id=team_id, password=password)
         user.is_admin = True
         user.save(using=self._db)
         return user
